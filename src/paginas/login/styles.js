@@ -26,7 +26,7 @@ export const Input = styled.input`
   margin-left: 20px;
 `;
 
-export const Titulo = styled.h1`
+export const TituloLogin = styled.h1`
   height: 20%;
   margin-top: -5px;
   border-bottom: 3px solid black;

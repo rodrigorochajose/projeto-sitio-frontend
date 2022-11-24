@@ -8,3 +8,25 @@ export const Nav = styled.nav`
   column-gap: 3rem;
   background: purple;
 `;
+
+export const DivOpcao = styled.div`
+  justify-content: center;
+  margin-left: -100px;
+`;
+
+export const Opcao = styled.ul`
+  margin-left: 30px;
+`;
+
+export const IconHome = styled.img`
+  width: 32px;
+`;
+
+export const IconLogout = styled.i`
+  font-size: 26px;
+`;
+
+export const linkstyle = {
+  textDecoration: "none",
+  color: "white",
+};
