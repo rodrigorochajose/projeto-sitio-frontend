@@ -5,6 +5,7 @@ import Carregando from "../../../componentes/carregando";
 import { DivConteudo } from "../../../componentes/divConteudo/styles";
 import { Titulo } from "../../../componentes/titulo/styles";
 import { Table } from "../../../componentes/table/styles";
+import { format, addDays } from "date-fns";
 
 export default function EntregasListar() {
   const url = useLocation();
@@ -69,7 +70,9 @@ export default function EntregasListar() {
               <td>{item.id}</td>
               <td>{item.venda_id}</td>
               <td>{item.endereco}</td>
-              <td>{item.data_entrega}</td>
+              <td>
+                {format(addDays(new Date(item.data_entrega), 1), "dd/MM/yyyy")}
+              </td>
               <td>{item.entregue}</td>
               <td>
                 <Link to={`/entrega/atualizar/${item.id}`}>

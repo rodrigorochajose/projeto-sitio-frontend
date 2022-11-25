@@ -57,7 +57,7 @@ export default function Login() {
             </label>
             <div className={`col-sm-10`}>
               <input
-                type="text"
+                type="password"
                 className={`form-control`}
                 id="senha"
                 name="senha"

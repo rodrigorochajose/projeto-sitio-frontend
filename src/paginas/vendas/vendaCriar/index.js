@@ -4,7 +4,8 @@ import { Api } from "../../../api/api";
 import Botao from "../../../componentes/botao";
 import { DivConteudo } from "../../../componentes/divConteudo/styles";
 import { Titulo } from "../../../componentes/titulo/styles";
-import { DivQuantidade, Quantidade } from "./styles";
+import { DivQuantidade, Quantidade, styleBtnProduto } from "./styles";
+import Carregando from "../../../componentes/carregando";
 
 export default function VendaCriar() {
   const url = useLocation();
@@ -40,7 +41,7 @@ export default function VendaCriar() {
   };
 
   if (!listaClientes || !listaProdutos) {
-    return <div>Carregando</div>;
+    return <Carregando />;
   }
 
   const enviar = async (event) => {
@@ -138,7 +139,7 @@ export default function VendaCriar() {
                 ))}
               </select>
             </div>
-            <DivQuantidade className={`input-group sm-3`}>
+            <DivQuantidade className={`input-group sm-2`}>
               <Quantidade
                 className={`form-control classeQuantidade`}
                 type="text"
@@ -154,13 +155,14 @@ export default function VendaCriar() {
                 +
               </button>
             </DivQuantidade>
-            <DivQuantidade className={`input-group sm-3`}>
+            <DivQuantidade className={`input-group sm-4`}>
               <button
-                class="btn btn-outline-secondary"
+                className={`btn btn-outline-secondary`}
+                style={styleBtnProduto}
                 type="button"
                 onClick={adicionaProduto}
               >
-                + Produto
+                Novo Produto
               </button>
             </DivQuantidade>
           </div>

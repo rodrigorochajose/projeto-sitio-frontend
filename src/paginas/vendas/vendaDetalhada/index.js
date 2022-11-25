@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { addDays, format } from "date-fns";
 import { useLocation } from "react-router-dom";
 import { Api } from "../../../api/api";
 import Carregando from "../../../componentes/carregando";
@@ -118,7 +119,10 @@ export default function VendaDetalhada() {
             <input
               className={`form-control`}
               type="text"
-              value={listaResultado.vendaBusca.data_venda}
+              value={format(
+                addDays(new Date(listaResultado.vendaBusca.data_venda), 1),
+                "dd/MM/yyyy"
+              )}
             />
           </div>
         </div>

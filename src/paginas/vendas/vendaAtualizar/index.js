@@ -67,7 +67,7 @@ export default function VendaAtualizar() {
               className={`form-control`}
               id="total"
               name="total"
-              defaultValue={listaResultado.total}
+              defaultValue={`R$ ${listaResultado.vendaBusca.total}`}
             />
           </div>
         </div>

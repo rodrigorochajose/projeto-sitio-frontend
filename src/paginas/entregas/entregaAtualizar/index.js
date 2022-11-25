@@ -1,3 +1,4 @@
+import { format, addDays } from "date-fns";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Api } from "../../../api/api";
@@ -82,7 +83,10 @@ export default function EntregaAtualizar() {
               className={`form-control`}
               id="data_entrega"
               name="data_entrega"
-              defaultValue={listaResultado.data_entrega}
+              defaultValue={format(
+                addDays(new Date(listaResultado.data_entrega), 1),
+                "dd/MM/yyyy"
+              )}
             />
           </div>
         </div>

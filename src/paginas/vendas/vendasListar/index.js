@@ -5,6 +5,7 @@ import Carregando from "../../../componentes/carregando";
 import { DivConteudo } from "../../../componentes/divConteudo/styles";
 import { Titulo } from "../../../componentes/titulo/styles";
 import { Table } from "../../../componentes/table/styles";
+import { format, addDays } from "date-fns";
 
 export default function VendasListar() {
   const url = useLocation();
@@ -71,7 +72,9 @@ export default function VendasListar() {
             <tr>
               <td>{item.id}</td>
               <td>{item.cliente_id}</td>
-              <td>{item.data_venda}</td>
+              <td>
+                {format(addDays(new Date(item.data_venda), 1), "dd/MM/yyyy")}
+              </td>
               <td>{`R$ ${item.total}`}</td>
               <td>{item.pago}</td>
               <td>

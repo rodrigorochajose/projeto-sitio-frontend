@@ -57,7 +57,7 @@ export default function ProdutosListar() {
             <tr>
               <td>{item.id}</td>
               <td>{item.descricao}</td>
-              <td>{item.valor}</td>
+              <td>{`R$ ${item.valor}`}</td>
               <td>{item.estoque}</td>
               <td>
                 <Link to={`/produto/atualizar/${item.id}`}>
