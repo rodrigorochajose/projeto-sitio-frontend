@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Api } from "../../../api/api";
-import { Table, Titulo } from "../../../componentes/padrao/styles";
 import Carregando from "../../../componentes/carregando";
+import { DivConteudo } from "../../../componentes/divConteudo/styles";
+import { Titulo } from "../../../componentes/titulo/styles";
+import { Table } from "../../../componentes/table/styles";
 
 export default function VendasListar() {
   const url = useLocation();
@@ -26,8 +28,16 @@ export default function VendasListar() {
     return <Carregando />;
   }
 
+  listaResultado.forEach((element) => {
+    if (element.pago == false) {
+      element.pago = "Não";
+    } else if (element.pago == true) {
+      element.pago = "Sim";
+    }
+  });
+
   return (
-    <div>
+    <DivConteudo largura="80" espacoEsquerda="10">
       <Titulo>Vendas</Titulo>
 
       <Table
@@ -39,10 +49,7 @@ export default function VendasListar() {
               <b>ID</b>
             </td>
             <td>
-              <b>Cliente ID(nome)</b>
-            </td>
-            <td>
-              <b>Usuario ID(nome)</b>
+              <b>Cliente</b>
             </td>
             <td>
               <b>Data da Venda</b>
@@ -54,34 +61,33 @@ export default function VendasListar() {
               <b>Pago</b>
             </td>
             <td>
-              <b>Editar</b>
+              <b>Detalhes</b>
             </td>
             <td>
-              <b>Excluir</b>
+              <b>Editar</b>
             </td>
           </tr>
           {listaResultado.map((item) => (
             <tr>
               <td>{item.id}</td>
               <td>{item.cliente_id}</td>
-              <td>{item.usuario_id}</td>
               <td>{item.data_venda}</td>
               <td>{`R$ ${item.total}`}</td>
               <td>{item.pago}</td>
               <td>
-                <Link>
-                  <i class="bi bi-pencil"></i>
+                <Link to={`/venda/${item.id}`}>
+                  <i class="bi bi-info-circle-fill"></i>
                 </Link>
               </td>
               <td>
-                <a>
-                  <i class="bi bi-trash"></i>
-                </a>
+                <Link to={`/venda/atualizar/${item.id}`}>
+                  <i class="bi bi-pencil"></i>
+                </Link>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
-    </div>
+    </DivConteudo>
   );
 }

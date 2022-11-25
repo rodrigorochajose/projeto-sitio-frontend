@@ -180,7 +180,10 @@ export default function Cabecalho() {
             </Opcao>
           </DivOpcao>
           <Link to="/login">
-            <IconLogout className={`bi bi-x-circle-fill`} />
+            <IconLogout
+              className={`bi bi-x-circle-fill`}
+              onClick={() => localStorage.setItem("token", "")}
+            />
           </Link>
         </div>
       </nav>

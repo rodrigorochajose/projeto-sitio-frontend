@@ -21,6 +21,7 @@
   grid-template-rows: auto 1fr auto;
   grid-template-columns: minmax(0, 1fr);
   min-height: 100vh;
+  background: #441d21;
 }
  
 a, button, input, textarea {

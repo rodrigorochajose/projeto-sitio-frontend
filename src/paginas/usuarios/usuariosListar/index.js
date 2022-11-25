@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Api } from "../../../api/api";
-import { Table, Titulo } from "../../../componentes/padrao/styles";
 import Carregando from "../../../componentes/carregando";
+import { DivConteudo } from "../../../componentes/divConteudo/styles";
+import { Titulo } from "../../../componentes/titulo/styles";
+import { Table } from "../../../componentes/table/styles";
+import ModalDeletar from "../../../componentes/modalDeletar";
 
 export default function UsuariosListar() {
   const url = useLocation();
@@ -26,10 +29,14 @@ export default function UsuariosListar() {
     return <Carregando />;
   }
 
-  return (
-    <div>
-      <Titulo>Usuários</Titulo>
+  const enviar = async (id) => {
+    console.log(id);
+    //await Api.deleteRequest(`/${model}/deletar/${id}`);
+  };
 
+  return (
+    <DivConteudo largura="80" espacoEsquerda="10">
+      <Titulo>Usuários</Titulo>
       <Table
         className={`table table-striped table-bordered table-hover table-bordered`}
       >
@@ -57,19 +64,19 @@ export default function UsuariosListar() {
               <td>{item.apelido}</td>
               <td>{item.login}</td>
               <td>
-                <Link>
+                <Link to={`/usuario/atualizar/${item.id}`}>
                   <i class="bi bi-pencil"></i>
                 </Link>
               </td>
               <td>
-                <a>
+                <Link to={`/usuario/deletar/${item.id}`}>
                   <i class="bi bi-trash"></i>
-                </a>
+                </Link>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
-    </div>
+    </DivConteudo>
   );
 }

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Api } from "../../../api/api";
-import { Table, Titulo } from "../../../componentes/padrao/styles";
 import Carregando from "../../../componentes/carregando";
+import { DivConteudo } from "../../../componentes/divConteudo/styles";
+import { Titulo } from "../../../componentes/titulo/styles";
+import { Table } from "../../../componentes/table/styles";
 
 export default function ProdutosListar() {
   const url = useLocation();
@@ -27,7 +29,7 @@ export default function ProdutosListar() {
   }
 
   return (
-    <div>
+    <DivConteudo largura="80" espacoEsquerda="10">
       <Titulo>Produtos</Titulo>
 
       <Table
@@ -48,10 +50,7 @@ export default function ProdutosListar() {
               <b>Estoque</b>
             </td>
             <td>
-              <b>Excluir</b>
-            </td>
-            <td>
-              <b>Excluir</b>
+              <b>Editar</b>
             </td>
           </tr>
           {listaResultado.map((item) => (
@@ -61,19 +60,14 @@ export default function ProdutosListar() {
               <td>{item.valor}</td>
               <td>{item.estoque}</td>
               <td>
-                <Link>
+                <Link to={`/produto/atualizar/${item.id}`}>
                   <i class="bi bi-pencil"></i>
                 </Link>
-              </td>
-              <td>
-                <a>
-                  <i class="bi bi-trash"></i>
-                </a>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
-    </div>
+    </DivConteudo>
   );
 }

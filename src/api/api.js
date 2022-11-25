@@ -1,11 +1,12 @@
 const baseUrl = "http://localhost:3001";
 
 export const Api = {
-  createRequest: (url, body) => {
+  postRequest: (url, body) => {
     return fetch(baseUrl + url, {
       method: "POST",
       headers: new Headers({
         "Content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       }),
       body: JSON.stringify(body),
     });
@@ -14,12 +15,31 @@ export const Api = {
   getAllRequest: (url) => {
     return fetch(baseUrl + url, {
       method: "GET",
+      headers: new Headers({
+        "Content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }),
     });
   },
 
-  getRequest: (url) => {
+  putRequest: (url, body) => {
     return fetch(baseUrl + url, {
-      method: "GET",
+      method: "PUT",
+      headers: new Headers({
+        "Content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }),
+      body: JSON.stringify(body),
+    });
+  },
+
+  deleteRequest: (url) => {
+    return fetch(baseUrl + url, {
+      method: "DELETE",
+      headers: new Headers({
+        "Content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }),
     });
   },
 };

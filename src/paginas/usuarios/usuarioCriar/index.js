@@ -1,8 +1,12 @@
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Api } from "../../../api/api";
+import Botao from "../../../componentes/botao";
+import { DivConteudo } from "../../../componentes/divConteudo/styles";
+import { Titulo } from "../../../componentes/titulo/styles";
 
 export default function UsuarioCriar() {
   const url = useLocation();
+  const navigate = useNavigate();
 
   const enviar = async (event) => {
     event.preventDefault();
@@ -11,47 +15,62 @@ export default function UsuarioCriar() {
       apelido: event.target.apelido.value,
       login: event.target.login.value,
       senha: event.target.senha.value,
-      ativo: event.target.ativo.value,
     };
 
-    const resultado = await Api.createRequest(url.pathname, dados);
+    await Api.postRequest(url.pathname, dados);
 
-    const jsonResultado = await resultado.json();
-
-    console.log(jsonResultado);
+    navigate("/usuarios");
   };
 
   return (
-    <div className="create">
-      <form className="form" onSubmit={enviar}>
-        <label htmlFor="apelido" className="form__label">
-          Apelido:
-        </label>
-        <input
-          type="text"
-          id="apelido"
-          name="apelido"
-          className="form__input"
-        />
-
-        <label htmlFor="login" className="form__label">
-          Login:
-        </label>
-        <input type="text" id="login" name="login" className="form__input" />
-
-        <label htmlFor="senha" className="form__label">
-          Senha:
-        </label>
-        <input type="text" id="senha" name="senha" className="form__input" />
-
-        <input type="hidden" id="ativo" name="ativo" value="true" />
-
-        <input
-          type="submit"
-          value="Adicionar"
-          className="button button--green button--full"
+    <DivConteudo largura="40" espacoEsquerda="30">
+      <Titulo>Novo Usuário</Titulo>
+      <form className={`form`} onSubmit={enviar}>
+        <div className={`row mb-3`}>
+          <label htmlFor="apelido" className={`col-sm-2 col-form-label`}>
+            Apelido
+          </label>
+          <div className={`col-sm-10`}>
+            <input
+              type="text"
+              className={`form-control`}
+              id="apelido"
+              name="apelido"
+            />
+          </div>
+        </div>
+        <div className={`row mb-3`}>
+          <label htmlFor="login" className={`col-sm-2 col-form-label`}>
+            Login
+          </label>
+          <div className={`col-sm-10`}>
+            <input
+              type="text"
+              className={`form-control`}
+              id="login"
+              name="login"
+            />
+          </div>
+        </div>
+        <div className={`row mb-3`}>
+          <label htmlFor="senha" className={`col-sm-2 col-form-label`}>
+            Senha
+          </label>
+          <div className={`col-sm-10`}>
+            <input
+              type="password"
+              className={`form-control`}
+              id="senha"
+              name="senha"
+            />
+          </div>
+        </div>
+        <Botao
+          descricao=" Cadastrar "
+          onClick={enviar}
+          icon="bi bi-person-plus-fill"
         />
       </form>
-    </div>
+    </DivConteudo>
   );
 }

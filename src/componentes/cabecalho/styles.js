@@ -24,6 +24,7 @@ export const IconHome = styled.img`
 
 export const IconLogout = styled.i`
   font-size: 26px;
+  color: #ff2929;
 `;
 
 export const linkstyle = {
